@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img  id="image" src="https://media3.giphy.com/media/l3nWhI38IWDofyDrW/200w.webp?cid=ecf05e47etysuk5nww12m2yoq9xvfa8e5qcaqkfjjqnyuh7p&rid=200w.webp&ct=g" alt="">
+</body>
+</html>
+<script>
+//     let url="www.tpps.//.google.com"
+//     let url1="www.web.series//ullu"
+//     let url2="www.https/action.log"
+
+//     function main(url,Ashish){
+//         setTimeout(function(){
+//             console.log("prosesng",url)
+//    Ashish(url)
+//         },3000)
+//     }
+//     main(url, function websi(url){
+//         console.log("prosesing",url)
+//         main(url1, function websi(url){
+//         console.log("prosesing",url)
+//         main(url2, function websi(url){
+//         console.log("prosesing",url)
+//     })
+//     })
+//     })
+    let images=document.getElementById("image")
+    function justlike(){
+        return false
+    }
+    let mypromise= new Promise (function (resolve,reject){
+        let data=false
+        setTimeout(function(){
+            data=justlike()
+        if(data){
+            resolve("mita")
+        }
+        else{
+            reject("tikha")
+        }
+        },3000)
+        
+    })
+    
+    // console.log(mypromise)
+    mypromise.then(function(res){
+        console.log(res)
+        image.src="http://forgifs.com/gallery/d/165248-2/Keffiyeh_throwing_cash.gif"
+    })
+    mypromise.catch(function(err){
+        console.log(err)
+        image.src="https://media4.giphy.com/media/frTCmCyOReJC2AxN7A/giphy.gif"
+    })
+    mypromise.finally(function(){
+        console.log("done")
+    })
+</script>

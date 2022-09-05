@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #muvies{
+            margin-left: 500px;
+            width: 30%;
+            height: 35px;
+            border-radius: 10px;
+            /* margin: auto; */
+        }
+        button{
+            width: 100px;
+            height: 25px;
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search muvies</h1>
+    
+    <input   type="url" placeholder="Search muvies" id="muvies">
+    <button onclick="main()">Search</button>
+    <!-- <button onclick="getdata()">search</button> -->
+    <div id="contai"></div>
+</body>
+</html>
+
+<script>
+
+// async function main(){
+//         let muvies=document.getElementById("muvies").value;
+//         let data=await getdata(muvies);
+        
+    
+//     }
+
+
+
+
+     async function main(){
+        try{
+
+        
+        let muvies=document.getElementById("muvies").value;
+        let res=await fetch(`https://omdbapi.com/?&t=${muvies}&apikey=3015d72d`);
+        let data=await res.json();
+        console.log(data)
+        // append(data)
+        append(data);
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+function append(data){
+    if(!data){
+                return;
+            }
+    let contai=document.getElementById("contai")
+    contai.innerHTML=null;
+    let img=document.createElement("img");
+    img.src=data.Poster;
+    let reting=document.createElement("p");
+    reting.innerText=data.imdbRating;
+    reting.style.marginLeft="120px"
+    let name=document.createElement("h2");
+    name.innerText=data.Title;
+    name.style.marginLeft="120px"
+    let Year=document.createElement("p");
+      Year.innerText=data.Released;
+      Year.style.marginLeft="120px"
+    contai.append(img,name,reting,Year);
+
+
+}
+
+</script>

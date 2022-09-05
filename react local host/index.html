@@ -1,0 +1,85 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #containers{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: auto;
+            
+        }
+        img{
+            width: 300px;
+            height: 300px;
+            margin-left: 120px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            /* color: gray; */
+            margin-top: 30px;
+            
+        }
+        #nav{
+            display: flex;
+            border: 2px solid gray;
+            width: 80%;
+            height: 60px;
+            margin: auto;
+            justify-content:flex-end;
+            padding: 10 20px;
+            gap: 20px;
+        }
+        p{
+            font-size: 20px;
+        }
+        #sear{
+            width: 60%;
+            height: 50px;
+            border: 1px solid rebeccapurple;
+            margin-right: 320px;
+            /* margin-top: 10px; */
+            border-radius: 10px;
+            font-size: 20px;
+        }
+      
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <input type="text" placeholder="search" id="sear" >
+        <p>signup</p>
+        <p>login</p>
+    </div>
+    
+    <div id="containers">
+
+    </div>
+</body>
+</html>
+<script>
+      async function getdata(){
+        let res= await fetch(`  http://localhost:3000/posts`)
+        let data=await res.json();
+        console.log(data)
+        appned(data)
+      }
+      getdata()
+      function appned(data){
+        let containers=document.getElementById("containers")
+        data.forEach(function(el){
+            let div=document.createElement("div");
+            let image=document.createElement("img");
+            image.src=el.url;
+            let title=document.createElement("p");
+            title.innerText=el.title;
+            title.style.marginLeft="180px"
+            let price=document.createElement("p");
+            price.innerText=el.price;
+            price.style.marginLeft="220px"
+            div.append(image,title,price)
+            containers.append(div)
+
+        })
+      }
+</script>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #ludoo{
+      width: 25%;
+      height: 350px;
+      border: 1px solid;
+      margin: auto;
+      border-radius: 10px;
+      background-color:turquoise;
+      
+    }
+    #display{
+      width: 80%;
+      height: 100px;
+      border: 1px solid blueviolet;
+      margin: auto;
+      margin-top: 20px;
+      border-radius: 10px;
+      background-color: white;
+     
+    }
+    #players{
+      display: grid;
+      grid-template-columns: repeat(3,30%);
+      grid-template-rows: repeat(1,100px);
+      margin-top: 50px;
+      justify-content: center;
+      text-align: center;
+      gap: 10px;
+     
+    }
+    #players>div{
+      border: 1px solid blue;
+     
+    }
+    p{
+      text-align: center;
+       margin-top: 40px;
+       font-size: 20ppx;
+       font-weight: bold;
+    }
+    #roll{
+      width: 50%;
+      height: 50px;
+      border: 1px solid red;
+      margin-left: 100px;
+      text-align: center;
+      margin-top: 20px;
+      background-color: gray;
+      color:black;
+      cursor: pointer;
+      border-radius: 8px;
+
+    }
+    h3{
+      margin-top: 12px;
+      font-size: 20px;
+    }
+    #mem1{
+        border-radius: 10px;
+        /* background-color: aqua; */
+    }
+    #mem2{
+        border-radius: 10px;
+        /* background-color: brown; */
+    }
+    #mem3{
+        border-radius: 10px;
+        /* background-color: tomato; */
+    }
+   
+
+  </style>
+</head>
+<body>
+  <div id="ludoo">
+
+    <div id="display"><p class="dis"></p></div>
+    <div id="players">
+      <div id="mem1"><p>member1</p></div>
+      <div id="mem2"><p>member2</p></div>
+      <div id="mem3"><p>member3</p></div>
+    </div>
+  <button onclick="myfun()" id="roll">playNow</button>
+  </div>
+</body>
+</html>
+<script>
+// document.querySelector("#roll").addEventListener("click",myfun);
+
+ function myfun(){
+    let member1=document.querySelector("#mem1")
+    let member2=document.querySelector("#mem2")
+    let member3=document.querySelector("#mem3")
+
+       var d1=Math.floor(Math.random()*6)+1;
+       var d2=Math.floor(Math.random()*6)+1;
+       var d3=Math.floor(Math.random()*6)+1;
+
+       
+       member1.innerHTML=d1;
+       member2.innerHTML=d2;
+       member3.innerHTML=d3;
+    if(member1.innerHTML>member2.innerHTML && member1.innerHTML>member3.innerHTML)
+    {
+        var x=document.querySelector("#display")
+        x.innerHTML="🥇🏆🏆Winner is 1 🏆🏆🥇"
+        member1.style.background="green";
+        member2.style.background="yellow";
+        member3.style.background="red"
+    }
+    else if(member1.innerHTML==member2.innerHTML && member1.innerHTML==member3.innerHTML)
+    {
+        var y=document.querySelector("#display")
+        y.innerHTML="Match Draw"
+        member1.style.background="blue";
+        member2.style.background="blue";
+        member3.style.background="blue";
+    }
+    else if(member2.innerHTML>member3.innerHTML && member2.innerHTML>member1.innerHTML)
+    {
+        var m=document.querySelector("#display")
+        m.innerHTML="🥇🏆Winner is 2 🏆🥇"
+        member1.style.background="red";
+        member2.style.background="green";
+        member3.style.background="yellow"
+    }
+   
+    else
+    {
+        var n=document.querySelector("#display")
+        n.innerHTML="🥇🏆Winner is 3 🏆🥇"
+        member1.style.background="yellow";
+        member2.style.background="red";
+        member3.style.background="green"
+    }
+   
+
+
+
+ }
+</script>

@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="from" onsubmit="getdata(event)" action="">  
+    <input type="text" placeholder="enter holder name" id="name">
+    <input type="number" placeholder="card number" id="card">
+    <input type="number" placeholder="ex-pairy_12/03/2025" id="date">
+    <input type="text" placeholder="enter cvv_562" id="cvv">
+    <input type="submit">
+</form>
+</body>
+</html>
+<script>
+    function DAta(n,c,d,v){
+        this.name=n;
+        this.card=c;
+        this.date=d;
+        this.cvv=v;
+    }
+
+
+
+    function getdata(e){
+        e.preventDefault();
+        let from=document.getElementById("from");
+        let name=from.name.value;
+        let number=from.card.value;
+        let date=from.date.value;
+        let cvv=from.cvv.value;
+        let sum= new DAta(name,number,date,cvv)
+        
+    
+    if(name==""){
+        alert("fill holder name")
+    }
+    // console.log(sum)
+    else if(number==""){
+        alert("fill proper card number")
+    }
+    else if(cvv==""){
+        alert("enter cvv pin")
+    }
+}
+</script>

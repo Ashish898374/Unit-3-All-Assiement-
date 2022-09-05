@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+
+
+self.addEventListener('push', (event) => {
+  if (!(self.Notification && self.Notification.permission === 'granted')) {
+    return;
+  }
+
+  const masai = event.masai?.json() ?? {};
+  const title = masai.title || "space between masai";
+  const message = masai.message || "Here's something you might want to check out.";
+  const icon = "images/new-notification.png";
+
+  const notification = new self.Notification(title, {
+    body: message,
+    tag: 'simple-push-demo-notification',
+    icon,
+  });
+
+  notification.addEventListener('click', () => {
+    clients.openWindow('https://example.blog.com/2015/03/04/something-new.html');
+  });
+});
+console.log(self)
+
+
+
+
+
+</script>

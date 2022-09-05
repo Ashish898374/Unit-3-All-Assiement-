@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #main{
+            
+            border: 2px solid red;
+            width: 30%;
+            margin: auto;
+            height: 480px;
+            border-radius: 10px;
+        }
+        #from{
+            width: 50%;
+            border: 1px solid blue;
+            margin: auto;
+            border: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="center">
+        <button id="ola">show prodcut</button>
+    </div>
+    <div id="main"> 
+    <form id="from" onsubmit="fun(event)" action="">
+        <p>prodcut name</p>
+    <input type="text" placeholder="enter prodcut name" id="name">
+    <br>
+    <p>catogery</p>
+    <input type="text" placeholder="catogery" id="catogery">
+    <br>
+    <p>image link</p>
+    <input type="url" placeholder="enter image link" id="image">
+    <br>
+    <p>price</p>
+    <input type="number" placeholder="enter price" id="price">
+    <p>gender</p>
+    <select id="gender">
+        <option value="">gender</option>
+        <option value="male" >male</option>
+        <option value="female">female</option>
+     </select>
+     <p>sold</p>
+    <select  id="boolean">
+        <option value="" >boolean</option>
+        <option value="true">true</option>
+        <option value="false" >false</option>
+    </select>
+    <br><br>
+     <input id="add" type="submit">
+    </form>
+</div>
+</body>
+</html>
+<script src="./partjs/index.js"></script>

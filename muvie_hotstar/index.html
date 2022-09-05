@@ -1,0 +1,147 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #nav{
+            border: 1px solid red;
+            display: flex;
+            justify-content: flex-end;
+            gap: 30px;
+            border-radius: 15px;
+            background-color: gray;
+            width: 70%;
+            margin-left: auto;
+        }
+        #login{
+            margin-right: 10px
+        }
+        #image{
+            margin-top: -50px;
+            border-radius: 10px;
+        }
+        #sear{
+            width: 40%;
+            height: 40px;
+            margin-left: 200px;
+            margin-top: -50px;
+            border-radius: 10px;
+        }
+        #bt{
+            width: 100px;
+            height: 35px;
+            border-radius: 10px;
+            font-size: 20px;
+        }
+        #ph{
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin-top: 10px;
+        }
+        #main{
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin-top: 10px;
+        }
+        #container{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <p>signup</p>
+        <p id="login">login</p>
+    </div>
+    
+    <img id="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5eLU9MrTwGWGy86ys6Z1cgD-6YEGrCB4rHQ&usqp=CAU" alt="">
+    <input oninput="debounce(main,1000)"  type="text" placeHolder="Search" id="sear">
+  <a href="./treand.html"> <button id="bt">treanding</button>  </a>  
+  <div id="container"></div>
+    <img id="ph" src="https://corporate.tubitv.com/wp-content/uploads/2020/06/Screen-Shot-2020-06-17-at-3.27.13-PM-2048x1114.png" alt="">
+    <img id="main" src="https://fuzeimages.s3.ap-south-1.amazonaws.com/wp-content/uploads/2020/06/30121057/7-Upcoming-Bollywood-Movies-On-Disney-Hotstar.jpg" alt="">
+    
+    
+</body>
+</html>
+<script>
+
+  
+    
+   
+async function main(){
+        let sear=document.getElementById("sear").value;
+        let data=await getdata(sear);
+        append(data);
+    
+    }
+        async function getdata(sear){
+
+        // api=`https://www.omdbapi.com/?i=tt3896198&apikey=fd3640cc&s=tiger`
+      const url=  `https://omdbapi.com/?apikey=f4300b1a&s=${sear}`;
+    // const url= `https://masai-mock-api.herokuapp.com/hotels/search?city=${query}`;
+
+    let res=await fetch(url);
+    let data=await  res.json();
+    return data.Search;
+    
+    console.log(data)
+   
+
+        }
+    
+        function append(data){
+            if(!data){
+                return;
+            }
+            container=document.getElementById("container");
+            container.innerHTML=null;
+            data.forEach(function(element){
+                let img=document.createElement("img");
+                img.src=element.Poster;
+                img.style.width="400px"
+                img.style.height="400px"
+
+                let p=document.createElement("h2");
+                p.innerText=element.Title;
+                p.style.textAlign="center"
+              
+                
+                
+                let div=document.createElement("div");
+                div.setAttribute("class","muvie");
+                
+                div.append(img,p)
+                container.append(div)
+                // window.location.reload()
+                console.log(data)
+                
+            });
+           
+        }
+        async function sortdata(){
+          let data=await main();
+            append(data)
+        }
+
+        let id;
+
+function debounce(func, delay) {
+  if (id) {
+    clearTimeout(id);
+  }
+  id = setTimeout(function () {
+    func();
+  }, delay);
+}
+
+
+
+
+</script>

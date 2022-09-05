@@ -1,0 +1,144 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #query{
+            border: solid 2px red;
+            width: 48%;
+            height: 40px;
+            margin-left: 400px;
+            border-radius: 10px;
+            font-size: 25px;
+
+        }
+        #muvies{
+         
+            width: 805px;
+            height: 650px;
+            border: 2px solid gray;
+            overflow: scroll;
+            margin-left: 400px;
+            margin-top: 5px;
+            
+            
+
+        }
+        img{
+            border: 2px solid gray;
+            border-radius: 10px;
+            width: 250px;
+            height: 140px;
+            margin-left: 30px;
+            margin-top: 8px;
+            
+        }
+        div{
+            border: 1px solid gray;
+        }
+        h1{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>omdb</h1>
+    <input oninput="main()" type="name" placeholder="yxz" id="query">
+    <div id="muvies"></div>
+
+
+</body>
+</html>
+<script>
+
+ 
+   
+
+
+//     async function main(){
+//     try{
+//         let query=document.getElementById("query").value;
+//         let res=   await fetch(`https://omdbapi.com/?apikey=f4300b1a&s=${query}`)
+        
+//         let data= await res.json();
+//         console.log(data)
+//         // return data.Search
+//         // append(data.Search)
+//         let copy=data.Search;
+//         if(copy!=undefined){
+//             append(copy)
+//         }
+//     }
+//     catch(err){
+//         console.log(err)
+//         let y=document.getElementById("muvies")
+//         let image=document.createElement("img")
+//         image.src="https://c.tenor.com/3rTB3tlOFtsAAAAC/epic-fail-epic-failure.gif"
+//         image.setAttribute("id","photo")
+//         y.append(image)
+//     }
+// }
+//   function append(data){
+//     data.forEach(function(el) {
+//     muvies.innerHTML=null;
+//     let name=document.createElement("p");
+//     name.innerText=el.Title;
+//     let img=document.createElement("img");
+//     img.src=el.Poster
+//     muvies.append(img,name)
+  
+// })
+//   }
+
+
+
+   async function  main(){
+    try{ 
+        let query=document.getElementById("query").value;
+     const url=`https://omdbapi.com/?apikey=f4300b1a&s=${query}`
+     let res= await fetch(url);
+     let data =await res.json();
+     console.log(data)
+     append(data.Search)
+  }catch(err){
+    console.log(err)
+    let y=document.getElementById("muvies")
+        let image=document.createElement("img")
+        image.src="https://media2.giphy.com/media/jtjFfBzqrDNQzVOm0y/giphy.gif?cid=6c09b952jso9reqnchc03ubk90jy4oki3rwctajrjggyremf&rid=giphy.gif&ct=s"
+        image.setAttribute("id","photo")
+        y.append(image)
+  }
+}
+
+
+  function append(data){
+    let muvies=document.getElementById("muvies")
+    console.log(data)
+  muvies.innerHTML=null
+    data.forEach(function(el) {
+        
+    // muvies.innerHTML=null;
+    let div =document.createElement("div")
+    
+    let name=document.createElement("p");
+    name.innerText=el.Title;
+    name.style.marginLeft="20px"
+    // name.style.marginTop="-80px"
+    let img=document.createElement("img");
+    img.src=el.Poster
+    let year=document.createElement("p")
+    year.innerText=el.Year;
+    year.style.marginLeft="20px"
+    // year.style.marginTop="-100"
+    let imdb=document.createElement("p");
+    imdb.innerText=el.imdbID;
+    imdb.style.marginLeft="20px"
+    // imdb.style.marginTop="-70px"
+    div.append(img,name,year,imdb)
+    muvies.append(div)
+  
+})
+  }
+</script>

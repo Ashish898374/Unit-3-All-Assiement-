@@ -1,0 +1,104 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .mapouter
+        {position:relative;
+        text-align:right;
+        height:700px;
+        width:700px;
+    margin-left: 400px;
+/* border: 2px solid gray; */
+margin-top: -260px;
+}
+        .gmap_canvas {
+            overflow:hidden;
+        background:none!important;
+        height:700px;
+        width:700px;
+        margin-left: 400px;
+        margin-top: -260px;
+    }
+    #weather{
+        width: 40%;
+        height: 40px;
+        border-radius: 15px;
+        font-size: 25px;
+        margin-left: 400px;
+        /* margin-top: 100px; */
+    }
+    #sub{
+        font-size: 25px;
+        border-radius: 8px;
+    }
+    #cont{
+        /* border: 1px solid red; */
+        width: 250px;
+        height: 350px;
+        margin-top: 90px;
+        
+    }
+    
+    
+    </style>
+</head>
+<body>
+    <input type="url"  placeholder="Search" id="weather">
+    
+    <button onclick="getdata()" id="sub">search</button>
+    <br>
+    <!-- <img id="sunset" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIEAAACBCAMAAADQfiliAAAAn1BMVEX/////wQdgfYv/1U9mgpBIbH3x8vT/wgD/vgBIdZPxuiT/00H/0jxae47/78b/00X/4pD/6K3FztL/+/D/+er/2F7/ugD/zllTdIN1hYBvgoP/8cz/7Lj/68H/4qf/3ZH/03D/9Nv3vhD/3Xn/89T/4If/0C//2IH/y07/xC3/yUP/0GH/5Z6NjnTx7+bY3uF3j5uUpq+sucD/2WjZsDnpH67jAAAEWElEQVR4nO2Z3XqiMBCGQbqFGlaqILUVFdRarLb1Z+//2jYohEQhJENcDzbfmT4k8z4zk8kkMQwtLS0tLS0tLaUaL4aL8T0BItezPDe6H0DgWZm84G4EkXsiuKMT+uhEgPqaQBNoAk1wd4JlXhOXdyMwFpkT0OJ+AIbx7K7c53sCGIYf+DeZ1r/FtBKzTobIe1fN4L97aDgR+zZaZV2HpbbtCKysm1kJdRK+dW58hioRguG5nRqKuDZB6hEKAAslEgTYbapywbdyADEC/2gRBDVeCAiAdRQasEQEgRMIP0gm09lHHMcfs+kk4ZQFEgLx+t3zSoQa81Gcrm2nlL1O46gGogTwemIAGAHxoP1p6oTmtUInnVZA5NtXlgTCAPgwRrLxauON0tCpMH+WE6ZXK75PslDqeFcguOwoP1o79fZPDM76IhpjFwJQBoL5c/LJN59DfLLFVz4EBQLyXItevv6mKvpVCje0GxLL9ZA8QObxLRPTqaj9E8OUHjrZ1q0TGZ7YsSUIbCdWvLkGa5EMoOWslW6uS0nzZylsYCNZB+RuUHavAARQh7CEAmAEJYFIwPYzifQDDfLXrQjW7RflBh6DTM6mLcC0HQBGmDYb4SmQKcXVCttVppfWAKb50gYAXAlotakKLddBoRbroXUantUiGedKAExzDgXoq3EBdgL0oulTEYBpfsIAkva1oFAI2x5mqoKAwzCDAPjqgoDDAFmQiToXYCdAwqCoGOQEkJKwUQhgmoBNWmkagBIhMWVOKE2yAe3aWGUa4ESQf5lVmogNqeiPe7nGVDujsB6dCKiaFJQGT9kReS4R2pLPYsUEMZl5i0qDHu5eeuSa53RnQnaxF8UEpFfrswZ7xsKzGBUfpkoBTDMtJmbNeYuLP6xV8aHackBt0KsLi8aR/Y1u7gPEGjwWL/hFWEgq3iwPtqzBKHsqQl4ht3y0ut1aWLjEHjo/Uo2fiagLrw/FBB/l1L3SIK9S/suaWK2JYgLBJyZKgpdXti24hcrfpgQiJzbb7v7pCjFA7vYECoI9/3p6evqaCyCkzQav1Lw52t23351O5/dbtxEB1K43XqHZ3dcMACO8NiKALtX8Bufa8xwgQ2j8FnSA51dFe/5WAGSB4CNQFVFGPd65Mc+BEoEbiBDwupCJc59PcoAg8HLBdmAAnNXAhKA5ELCDK1ZQ54QKAB6C7YAv9Gr2RzoHRvtRYy7Q+6Kkqs9NdA6MBsagRKjOBch5iagqE+gQYACDRqgMBDgLMlVcKF4BNCK0u16fXNYEJgcG+VcDXi6E8p0BozjrACixOVCIzQVGZixg5ZGj7y6rCg9ceYHVN2/60+Cf3egXR0+sOpUANELnYgRv8tHuBwOUQ2V0AcAgSM3zY+xBI68AoAijvQEZVgUA9oLxoAoAiPBgHOSH1QCAEEYH43EnOWxUC5AhyE62wwvy8bB7kNH+pxYAr6y91Fy7wyNnMi0tLS0tLa3/VX8BTQpkr+HIvI0AAAAASUVORK5CYII=" alt=""> -->
+    <div id="cont"></div>
+    
+    <div class="mapouter"><div class="gmap_canvas"> 
+        <iframe width="700" height="700" id="gmap_canvas"  frameborder="0" scrolling="no" marginheight="0" marginwidth="0",margin-top="-260px"> </iframe></div></div>
+
+        <!-- </iframe><a href="https://www.whatismyip-address.com/divi-discount/">divi discount</a><br> -->
+       
+</html>
+<script>
+
+
+
+   async function getdata(){
+    try{
+        let weather=document.getElementById("weather").value;
+
+        
+        let res= await fetch (`https://api.openweathermap.org/data/2.5/weather?q=${weather}&appid=f63a7728dc3225cd5e9ff01160989271&units=metric`);
+        let data= await res.json();
+        console.log(data)
+        append(data)
+
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
+  function append(data){
+    let cont=document.getElementById("cont");
+    let map=document.getElementById("gmap_canvas");
+    cont.innerHTML=null;
+    let h2=document.createElement("h1");
+    h2.innerText=data.name;
+    let temp=document.createElement("p");
+    temp.innerText= `temp:${data.main.temp}`
+ 
+    let max=document.createElement("p");
+    max.innerText=`maxtemp:${data.main.temp_max}`
+    let min=document.createElement("p");
+    min.innerText=`mintemp:${data.main.temp_min}`
+    let sys=document.createElement("p");
+    sys.innerText=`sunset:-${data.sys.sunset}`;
+    let sys1=document.createElement("p");
+    sys1.innerText=`setrise:${data.sys.sunrise}`;
+    cont.append(h2,temp,min,max,sys,sys1)
+    map.src=`https://maps.google.com/maps?q=${data.name}&t=&z=13&ie=UTF8&iwloc=&output=embed`
+
+  }
+
+</script>

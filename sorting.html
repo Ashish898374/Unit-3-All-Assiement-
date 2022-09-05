@@ -1,0 +1,314 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: gray;
+            
+        }
+        #main{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: auto;
+            gap: 10px 20px;
+            /* margin-top: 50px; */
+        }
+        img{
+          width: 100%;
+          height:330px;
+          margin-top: 10px;
+          border-radius: 15px;
+         
+        }
+      
+       
+        h1{
+            text-align: center;
+        }
+        h4{
+            text-align: center;
+            /* margin-left: 12px; */
+            text-align: center;
+        }
+        h5{
+            text-align: center;
+        }
+        #sot{
+            width: 70px;
+            height: 30px;
+            background-color: aqua;
+        }
+        #sotr{
+            width: 70px;
+            height: 30px;
+            background-color: gray;
+        }
+        #query{
+            border: solid 2px red;
+            width: 48%;
+            height: 40px;
+            margin-left: 400px;
+            border-radius: 10px;
+            font-size: 25px;
+            margin-top: -20px;
+            /* position: fixed; */
+
+        }
+        #muvies{
+         
+            display: grid;
+         grid-template-columns: repeat(4,1fr);
+         grid-template-rows: auto;
+        }
+        /* img{
+            border: 2px solid gray;
+            border-radius: 10px;
+            width: 250px;
+            height: 140px;
+            margin-left: 30px;
+            margin-top: 8px;
+            
+        } */
+        div{
+            border: 1px solid gray;
+        }
+        h1{
+            text-align: center;
+            margin-top: -60px;
+            color: aquamarine;
+        }
+        #den{
+            width: 18%;
+            height: 200px;
+            border-radius: 15px;
+        }
+        #gandi{
+            width: 26%;
+            height: 200px;
+            margin-left: 920px;
+            border-radius: 15px;
+            /* position:fixed */
+        }
+        #photo{
+            width: 80%;
+            height: 350px;
+            /* margin-top: -40px; */
+            margin-left: 500px;
+            /* background-color: gray; */
+        }
+        
+        
+       
+        </style>
+</head>
+<body>
+
+    <img  id="den" src="https://secure-media.hotstar.com/web-assets/prod/images/Disney+Hotstar.jpg" alt="">
+    
+    <img id="gandi" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr_I8wsqcEhkIoZ1HJNhBnsYHtjotahbbycQ&usqp=CAU" alt="">
+    <!-- <button id="sot" onclick="sortL()">sortLTH</button>
+    <button id="sotr" onclick="sort()">sortHTL</button> -->
+    <h1>Hotstar muvies</h1>
+    <input oninput="main()" type="name" placeholder="yxz" id="query">
+    <div id="muvies"></div>
+    <div id="main">
+
+    </div>
+</body>
+</html>
+<script>
+    let data=[
+        {
+            
+            image:"http://rskg.in/wp-content/uploads/2022/07/download-24-1-1024x576.jpg",
+            name:"RRR",
+            release_data:"Release_data,15/03/2019",
+            
+            point:"6.0",
+        },
+        {
+           
+            image:"https://www.91-cdn.com/hub/wp-content/uploads/2021/07/Chhalaang-best-movies-on-Amazon-Prime.jpg",
+            name:"chailenge",
+            release_data:"Release_data,12/08/2022",
+           
+            point:"10",
+        },
+        {
+           
+            image:"https://upload.wikimedia.org/wikipedia/en/f/f4/Mimi_2021_Hindi_poster.jpg",
+            name:"mimi",
+            release_data:"Release_data,2/07/2022",
+         
+            point:"8.1",
+        },
+  
+        {
+         
+           
+            image:"https://ft-article-images.s3.ap-south-1.amazonaws.com/hindi_movie_on_amazon_prime_23e18d23a0.jpg",
+            name:"sankuntala",
+            release_data:"Release_data,10/04/2022",
+            
+            point:"8.7 ",
+        },
+        {
+            
+            image:"https://images.hindustantimes.com/img/2022/04/01/1600x900/RRR-Movie-Review_1648825470847_1648825479894.jpg",
+            name:"RRR",
+            release_data:"Release_data,2/07/2022",
+           
+            point:"10",
+        },
+        {
+         
+           
+         image:"https://i.ytimg.com/vi/Z3FxZxLDIaE/maxresdefault.jpg",
+         name:"Surya",
+         release_data:"Release_data,10/04/2022",
+        
+         point:"8.6 ",
+     },
+     {
+         
+           
+         image:"https://i.ytimg.com/vi/v4h00jKb5pQ/maxresdefault.jpg",
+         name:"jaguar",
+         release_data:"Release_data,10/04/2022",
+        
+         point:"9.5",
+     },
+     {
+         
+           
+         image:"https://cdn.siasat.com/wp-content/uploads/2021/02/alia-bhatt.jpg",
+         name:"gangubai",
+         release_data:"Release_data,10/04/2022",
+         point:"6.3",
+     },
+     {
+         
+           
+         image:"https://images.livemint.com/img/2022/02/04/1600x900/Entertainment_1638887122245_1643990785337.JPG",
+         name:"Pushpa",
+         release_data:"Release_data,10/04/2022",
+         point:"7",
+     },
+
+
+    ];
+    let num=JSON.parse(localStorage.getItem("mivies"))||[]
+    console.log(num)
+    // console.log(arr)
+    displayproduct(data);
+   
+    function displayproduct(data){
+        let prodct=document.getElementById("main")
+        prodct.innerHTML=null
+        
+        // data.forEach(function(el,index){
+        
+
+
+    data.forEach(function(element){
+        
+        // data.sort(function(a,b){
+        //     return a.point-b.point;
+        // })
+     
+    
+
+     let div=document.createElement("div");
+     let img=document.createElement("img");
+     img.src=element.image;
+     let names=document.createElement("h1");
+     names.innerText=element.name;
+     let date=document.createElement("h4");
+     date.innerText=element.release_data;
+    
+    //  let reting=document.createElement("img");
+    //  reting.src=element.reting;
+     let point=document.createElement("h5");
+     point.innerText=element.point;
+     div.append(img,names,date,point)
+     prodct.append(div);
+    //  console.log(aarr.pushrr)
+
+    })
+}
+data.push(num)
+
+localStorage.setItem("muvies",JSON.stringify(data))
+
+
+
+// function sortL(){
+//     data=data.sort(function(a,b){
+//         return a.point-b.point
+//     })
+//     displayproduct(data)
+//     // console.log("data",data)
+// }
+// function sort(){
+//     data=data.sort(function(a,b){
+//         return b.point-a.point
+//     })
+//     displayproduct(data)
+   
+// }
+
+
+
+
+async function  main(){
+    try{ 
+        let query=document.getElementById("query").value;
+     const url=`https://omdbapi.com/?apikey=f4300b1a&s=${query}`
+     let res= await fetch(url);
+     let data =await res.json();
+     console.log(data)
+     append(data.Search)
+  }catch(err){
+    console.log(err)
+    let y=document.getElementById("muvies")
+        let image=document.createElement("img")
+        image.src="https://c.tenor.com/w8gHrF5TKe8AAAAM/failure-fail.gif"
+        image.setAttribute("id","photo")
+        y.append(image)
+  }
+}
+
+
+  function append(data){
+    let muvies=document.getElementById("muvies")
+  muvies.innerHTML=null
+    data.forEach(function(el) {
+        
+    // muvies.innerHTML=null;
+    let div =document.createElement("div")
+    
+    let name=document.createElement("h2");
+    name.innerText=el.Title;
+    name.style.marginLeft="60px"
+    // name.style.marginTop="-80px"
+    let img=document.createElement("img");
+    img.src=el.Poster
+    img.style.width="350px"
+    img.style.height="300px"
+    let year=document.createElement("p")
+    year.innerText=el.Year;
+    year.style.marginLeft="100px"
+    // year.style.marginTop="-100"
+    let imdb=document.createElement("p");
+    imdb.innerText=el.imdbID;
+    imdb.style.marginLeft="100px"
+    // imdb.style.marginTop="-70px"
+    div.append(img,name,year,imdb)
+    muvies.append(div)
+  
+})
+  }
+</script>

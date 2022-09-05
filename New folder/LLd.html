@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+    class student{
+        constructor(name,batch){
+            this.name=name;
+            this.batch=batch;
+        }
+        
+    }
+    class exame extends student{
+        constructor(name,batch){
+        
+            super(name,batch)
+        }
+    }
+    class rrb extends student{
+        constructor(name,batch){
+        
+            super(name,batch)
+        }
+    }
+    class ntpc extends student{
+        constructor(name,batch){
+        
+            super(name,batch)
+        }
+    }
+    // let output=new exame ("fourwheeler","A1")
+    // console.log(output)
+    class room_no{
+        constructor(name,batch){
+            this.name=name;
+            this.batch=batch;
+            this.isresult=false;
+        }
+        get _isresult(){
+            return this.isresult;
+        }
+        set _isresult(pass){
+            this.isresult=pass
+        }
+    }
+    // let nam=new room_no("A4","jdn")
+    // nam._isresult=true
+    // console.log(nam)
+    class exameFlour{
+        constructor(flournumber,maxflour){
+            this.flournumber=flournumber;
+            this.examebatch=[];
+            for( let i=0;i<maxflour;i++){
+                  if(i==0){
+                    this.examebatch.push(new room_no(i,exame));
+
+                  }
+                  else if(i==1){
+                    this.examebatch.push(new room_no(i,rrb));
+
+                  }
+                  else{
+                      this.examebatch.push(new room_no(i,ntpc))
+                  }
+            }
+        }
+
+    }
+
+    class no_of_exame{
+        constructor(buileding){
+            this.buileding=buileding;
+            this.paper_type=[];
+            for(let i=0;i<buileding;i++){
+                this.paper_type.push(new no_of_exame(i,buileding));
+            }
+        }
+    }
+    let lld=new no_of_exame(3)
+    console.log(lld)
+</script>

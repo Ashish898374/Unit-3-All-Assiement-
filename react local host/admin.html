@@ -1,0 +1,115 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>add product</h1>
+        <input type="text" placeholder="id" id="id">
+        <input type="text" placeholder="title" id="title">
+        <input type="url" placeholder="url" id="url">
+        <input type="text" placeholder="prices" id="price">
+        <!-- <input type="url" placeholder="image link" id="url"> -->
+        <button onclick="getdata()">submit</button>
+    </div>
+    <div>
+        <h1>remove</h1>
+        <input type="text" placeholder="id number" id="remove_id">
+        <button onclick="removedata()"> click</button>
+    </div>
+    <div>
+        <h1>updata </h1>
+        <input type="text" placeholder="id number" id="upId">
+        <input type="text" placeholder="title" id="uptitle">
+        <input type="text" placeholder="url" id="upauthor">
+        <input type="text" placeholder="price" id="price">
+        <button onclick="updataData()">submit</button>
+    </div>
+</body>
+</html>
+<script>
+
+
+         
+
+    async function getdata(){
+         let id=document.getElementById("id").value;
+         let title=document.getElementById("title").value;
+         let url=document.getElementById("url").value;
+         let price=document.getElementById("price").value;
+        //  let url=document.getElementById("url").value;
+
+
+
+
+         let send_data={
+            id,
+            title,
+            url,
+            price,
+            // url,
+        
+         }
+         let res= await fetch(`  http://localhost:3000/posts
+`,{
+            method:"POST",
+            body :JSON.stringify(send_data),
+            headers:{
+                "Content-Type":"application/json",
+            },
+
+         })
+         let data=await res.json();
+         console.log("data",data)
+        
+    }
+// ****************************************************
+    async function removedata(){
+        let remove_id=document.getElementById("remove_id").value;
+       
+        let res=await fetch(`  http://localhost:3000/posts
+/${remove_id}`,{
+            method:"DELETE",
+            headers:{
+                 "Content-Type":"application/json",
+            }
+        })
+        let data=await res.json();
+        console.log("data",data)
+    }
+    
+
+    // ****************************************************
+
+
+    async function updataData(){
+
+        // let upId=document.getElementById("upId").value;
+         let uptitle=document.getElementById("uptitle").value;
+         let upauthor=document.getElementById("upauthor").value;
+
+
+
+
+         let up_data={
+            uptitle,
+            upauthor,
+        
+         }
+       
+        let res=await fetch(`  http://localhost:3000/posts
+/${upId}`,{
+            method:"PATCH",
+            body :JSON.stringify(up_data),
+            headers:{
+                 "Content-Type":"application/json",
+            }
+        })
+        let data=await res.json();
+        console.log("data",data)
+    }
+
+</script>
